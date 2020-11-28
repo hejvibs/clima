@@ -24,14 +24,16 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   void updateUi(dynamic weatherData) {
-    num temp = weatherData['main']['temp'];
-    temperature = temp.toInt();
-    var weatherCondition = weatherData['weather'][0]['id'];
-    weatherIcon = weatherModel.getWeatherIcon(weatherCondition);
+    setState(() {
+      num temp = weatherData['main']['temp'];
+      temperature = temp.toInt();
+      var weatherCondition = weatherData['weather'][0]['id'];
+      weatherIcon = weatherModel.getWeatherIcon(weatherCondition);
 
-    String cityName = weatherData['name'];
-    String message = weatherModel.getMessage(temperature);
-    weatherMessage = '$message in $cityName!';
+      String cityName = weatherData['name'];
+      String message = weatherModel.getMessage(temperature);
+      weatherMessage = '$message in $cityName!';
+    });
   }
 
   @override
