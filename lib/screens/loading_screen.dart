@@ -3,7 +3,6 @@ import 'package:clima/services/location.dart';
 import 'package:clima/services/networking.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-// import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const apiKey = '2df3bbc58358e57b293149d9ca8d8f01';
 
@@ -30,16 +29,11 @@ class _LoadingScreenState extends State<LoadingScreen> {
     longitude = location.longitude;
     NetworkHelper networkHelper = NetworkHelper('https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey');
 
-    var weatherData = networkHelper.getData();
+    var weatherData = await networkHelper.getData();
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) {
-          return LocationScreen();
-        },
-      ),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return LocationScreen(locationWeather: weatherData);
+    }));
   }
 
   @override
