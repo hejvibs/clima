@@ -31,10 +31,13 @@ dependencies:
   geolocator: ^6.1.8
   http: ^0.12.2
   flutter_spinkit: ^4.1.2
+  auto_route: ^0.6.9
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  auto_route_generator: ^0.6.9
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

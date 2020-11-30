@@ -1,3 +1,5 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:clima/routes/app_router.gr.dart';
 import 'package:clima/services/weather.dart';
 import 'package:clima/utilities/constants.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +75,13 @@ class _LocationScreenState extends State<LocationScreen> {
                     ),
                   ),
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      var typedCityName = await ExtendedNavigator.root.push(Routes.cityScreen);
+                      if (typedCityName != null) {
+                        var weatherData = await weatherModel.getCityWeather(typedCityName);
+                        updateUi(weatherData);
+                      }
+                    },
                     child: Icon(
                       Icons.location_city,
                       size: 50.0,

@@ -1,4 +1,5 @@
-import 'package:clima/screens/location_screen.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:clima/routes/app_router.gr.dart';
 import 'package:clima/services/weather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -18,9 +19,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void getLocationData() async {
     var weatherData = await WeatherModel().getLocationWeather();
 
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return LocationScreen(locationWeather: weatherData);
-    }));
+    ExtendedNavigator.root.push(
+      Routes.locationScreen,
+      arguments: LocationScreenArguments(locationWeather: weatherData),
+    );
   }
 
   @override
